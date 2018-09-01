@@ -12,6 +12,20 @@ class Map extends React.Component {
       center: [10.1299, 51.3401],
       zoom: 5.1
     })
+
+    this.map.on('load', () => {
+      this.map.addSource('cities-1tb0p9', {
+        type: 'vector',
+        url: 'mapbox://ustroetz.4esy0wuq'
+      })
+
+      this.map.addLayer({
+        id: 'cities-1tb0p9',
+        type: 'circle',
+        source: 'cities-1tb0p9',
+        'source-layer': 'cities-1tb0p9'
+      })
+    })
   }
 
   componentWillUnmount() {
