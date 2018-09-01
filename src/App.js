@@ -1,7 +1,9 @@
-import AppBar from "@material-ui/core/AppBar";
-import React, { Component } from "react";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+import AppBar from '@material-ui/core/AppBar'
+import React, { Component } from 'react'
+import Toolbar from '@material-ui/core/Toolbar'
+import Typography from '@material-ui/core/Typography'
+
+import Map from './Map'
 
 class App extends Component {
   render() {
@@ -14,9 +16,10 @@ class App extends Component {
             </Typography>
           </Toolbar>
         </AppBar>
+        <Map />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
