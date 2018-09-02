@@ -29,18 +29,21 @@ class Map extends React.Component {
       map.setFilter('cities-aqu61x', [
         'all',
         ['>=', 'population', 50000],
-        ['<=', 'population', 150000]
+        ['<=', 'population', 250000],
+        ['!=', 'featureCode', 'PPLX']
       ])
     })
 
     map.on('click', 'cities-aqu61x', function(e) {
       var coordinates = e.features[0].geometry.coordinates.slice()
-      var description = e.features[0].properties.name
+      var name = e.features[0].properties.name
+      var population = e.features[0].properties.population
+
       console.log(e.features[0].properties)
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(description)
+        .setHTML(name + ' (' + population + ')')
         .addTo(map)
     })
   }
