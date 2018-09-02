@@ -39,8 +39,6 @@ class Map extends React.Component {
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
 
-      console.log(e.features[0].properties)
-
       new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(name + ' (' + population + ')')
