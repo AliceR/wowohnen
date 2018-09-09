@@ -68,7 +68,8 @@ class App extends Component {
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
             <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {this.state.min} - {this.state.max} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              👩‍🌾 {this.state.min.toLocaleString()} -{' '}
+              {this.state.max.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
             </Typography>
             <Range
               defaultValue={[this.state.min, this.state.max]}
