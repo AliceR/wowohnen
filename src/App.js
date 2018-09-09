@@ -77,6 +77,8 @@ class App extends Component {
               max={500000}
               step={1000}
               onChange={this.onSliderChange}
+              trackStyle={[{ backgroundColor: 'teal' }]}
+              handleStyle={[{ borderColor: 'teal' }, { borderColor: 'teal' }]}
             />
           </div>
         </Drawer>
