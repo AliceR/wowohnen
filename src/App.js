@@ -24,7 +24,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    width: 300
+    width: 320
   },
   content: {
     flexGrow: 1,
@@ -68,7 +68,8 @@ class App extends Component {
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
             <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {this.state.min} - {this.state.max} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              👩‍🌾 {this.state.min.toLocaleString()} -{' '}
+              {this.state.max.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
             </Typography>
             <Range
               defaultValue={[this.state.min, this.state.max]}
@@ -80,7 +81,7 @@ class App extends Component {
           </div>
         </Drawer>
         <main className={classes.content}>
-          <Map />
+          <Map min={this.state.min} max={this.state.max} />
         </main>
       </div>
     )
