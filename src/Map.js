@@ -46,7 +46,7 @@ class Map extends React.Component {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(name + ' (' + population + ')')
+        .setHTML(name + ' (' + population.toLocaleString() + ')')
         .addTo(map)
     })
 
