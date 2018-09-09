@@ -28,7 +28,10 @@ class Map extends React.Component {
         id: 'cities-aqu61x',
         type: 'circle',
         source: 'cities-aqu61x',
-        'source-layer': 'cities-aqu61x'
+        'source-layer': 'cities-aqu61x',
+        paint: {
+          'circle-color': 'teal'
+        }
       })
 
       map.setFilter('cities-aqu61x', [
