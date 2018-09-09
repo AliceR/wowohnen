@@ -5,6 +5,11 @@ mapboxgl.accessToken =
   'pk.eyJ1IjoidXN0cm9ldHoiLCJhIjoiQmp3RjlaZyJ9.7JCU4lzvAzfijEV129QFiQ'
 
 class Map extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = { map: null }
+  }
+
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -28,8 +33,8 @@ class Map extends React.Component {
 
       map.setFilter('cities-aqu61x', [
         'all',
-        ['>=', 'population', 50000],
-        ['<=', 'population', 250000],
+        ['>=', 'population', this.props.min],
+        ['<=', 'population', this.props.max],
         ['!=', 'featureCode', 'PPLX']
       ])
     })
@@ -44,6 +49,19 @@ class Map extends React.Component {
         .setHTML(name + ' (' + population + ')')
         .addTo(map)
     })
+
+    this.setState({ map: map })
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.min !== prevProps.min || this.props.max !== prevProps.max) {
+      this.state.map.setFilter('cities-aqu61x', [
+        'all',
+        ['>=', 'population', this.props.min],
+        ['<=', 'population', this.props.max],
+        ['!=', 'featureCode', 'PPLX']
+      ])
+    }
   }
 
   render() {

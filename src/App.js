@@ -80,7 +80,7 @@ class App extends Component {
           </div>
         </Drawer>
         <main className={classes.content}>
-          <Map />
+          <Map min={this.state.min} max={this.state.max} />
         </main>
       </div>
     )
