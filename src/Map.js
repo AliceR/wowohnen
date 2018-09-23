@@ -45,10 +45,11 @@ class Map extends React.Component {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
+      var sunshine_hours = e.features[0].properties.sunshine_hours
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(name + ' (' + population.toLocaleString() + ')')
+        .setHTML(name + ' (' + population.toLocaleString() + ' ' + sunshine_hours.toLocaleString() + ')')
         .addTo(map)
     })
 
