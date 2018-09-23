@@ -36,8 +36,8 @@ class Map extends React.Component {
 
       map.setFilter('cities_processed-59mru6', [
         'all',
-        ['>=', 'population', this.props.min],
-        ['<=', 'population', this.props.max]
+        ['>=', 'population', this.props.populationMin],
+        ['<=', 'population', this.props.populationMax]
       ])
     })
 
@@ -49,7 +49,14 @@ class Map extends React.Component {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(name + ' (' + population.toLocaleString() + ' ' + sunshine_hours.toLocaleString() + ')')
+        .setHTML(
+          name +
+            ' (' +
+            population.toLocaleString() +
+            ' ' +
+            sunshine_hours.toLocaleString() +
+            ')'
+        )
         .addTo(map)
     })
 
@@ -57,11 +64,14 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.min !== prevProps.min || this.props.max !== prevProps.max) {
+    if (
+      this.props.populationMin !== prevProps.populationMin ||
+      this.props.populationMax !== prevProps.populationMax
+    ) {
       this.state.map.setFilter('cities_processed-59mru6', [
         'all',
-        ['>=', 'population', this.props.min],
-        ['<=', 'population', this.props.max],
+        ['>=', 'population', this.props.populationMin],
+        ['<=', 'population', this.props.populationMax],
         ['!=', 'featureCode', 'PPLX']
       ])
     }

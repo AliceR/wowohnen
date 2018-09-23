@@ -42,15 +42,15 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      min: 50000,
-      max: 250000
+      populationMin: 50000,
+      populationMax: 250000
     }
   }
 
   onSliderChange = value => {
     this.setState({
-      min: value[0],
-      max: value[1]
+      populationMin: value[0],
+      populationMax: value[1]
     })
   }
 
@@ -68,11 +68,14 @@ class App extends Component {
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
             <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {this.state.min.toLocaleString()} -{' '}
-              {this.state.max.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              👩‍🌾 {this.state.populationMin.toLocaleString()} -{' '}
+              {this.state.populationMax.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
             </Typography>
             <Range
-              defaultValue={[this.state.min, this.state.max]}
+              defaultValue={[
+                this.state.populationMin,
+                this.state.populationMax
+              ]}
               min={0}
               max={500000}
               step={1000}
@@ -83,7 +86,10 @@ class App extends Component {
           </div>
         </Drawer>
         <main className={classes.content}>
-          <Map min={this.state.min} max={this.state.max} />
+          <Map
+            populationMin={this.state.populationMin}
+            populationMax={this.state.populationMax}
+          />
         </main>
       </div>
     )
