@@ -37,8 +37,7 @@ class Map extends React.Component {
       map.setFilter('cities_processed-59mru6', [
         'all',
         ['>=', 'population', this.props.min],
-        ['<=', 'population', this.props.max],
-        ['!=', 'featureCode', 'PPLX']
+        ['<=', 'population', this.props.max]
       ])
     })
 
