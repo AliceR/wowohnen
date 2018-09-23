@@ -16,8 +16,8 @@ class App extends Component {
     this.state = {
       populationMin: 50000,
       populationMax: 250000,
-      sunshineHoursMin: 0,
-      sunshineHoursMax: 1000
+      sunshineHoursMin: 1600,
+      sunshineHoursMax: 2000
     }
   }
 
@@ -69,7 +69,7 @@ class App extends Component {
                 this.state.sunshineHoursMax
               ]}
               min={0}
-              max={5000}
+              max={2000}
               step={100}
               onChange={value => this.onSliderChange('sunshineHours', value)}
               trackStyle={[{ backgroundColor: 'teal' }]}
