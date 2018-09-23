@@ -68,7 +68,9 @@ class Map extends React.Component {
   componentDidUpdate(prevProps) {
     if (
       this.props.populationMin !== prevProps.populationMin ||
-      this.props.populationMax !== prevProps.populationMax
+      this.props.populationMax !== prevProps.populationMax ||
+      this.props.sunshineHoursMin !== prevProps.sunshineHoursMin ||
+      this.props.sunshineHoursMax !== prevProps.sunshineHoursMax
     ) {
       this.state.map.setFilter('cities_processed-59mru6', [
         'all',
