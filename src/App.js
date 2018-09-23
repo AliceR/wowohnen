@@ -15,14 +15,16 @@ class App extends Component {
     super(props)
     this.state = {
       populationMin: 50000,
-      populationMax: 250000
+      populationMax: 250000,
+      sunshineHoursMin: 0,
+      sunshineHoursMax: 1000
     }
   }
 
-  onSliderChange = value => {
+  onSliderChange = (type, value) => {
     this.setState({
-      populationMin: value[0],
-      populationMax: value[1]
+      [`${type}Min`]: value[0],
+      [`${type}Max`]: value[1]
     })
   }
 
@@ -51,7 +53,25 @@ class App extends Component {
               min={0}
               max={500000}
               step={1000}
-              onChange={this.onSliderChange}
+              onChange={value => this.onSliderChange('population', value)}
+              trackStyle={[{ backgroundColor: 'teal' }]}
+              handleStyle={[{ borderColor: 'teal' }, { borderColor: 'teal' }]}
+            />
+          </div>
+          <div className={classes.range}>
+            <Typography variant="subheading" color="inherit" align="center">
+              🌥 {this.state.sunshineHoursMin.toLocaleString()} -{' '}
+              {this.state.sunshineHoursMax.toLocaleString()} ☀️
+            </Typography>
+            <Range
+              defaultValue={[
+                this.state.sunshineHoursMin,
+                this.state.sunshineHoursMax
+              ]}
+              min={0}
+              max={5000}
+              step={100}
+              onChange={value => this.onSliderChange('sunshineHours', value)}
               trackStyle={[{ backgroundColor: 'teal' }]}
               handleStyle={[{ borderColor: 'teal' }, { borderColor: 'teal' }]}
             />
@@ -61,6 +81,8 @@ class App extends Component {
           <Map
             populationMin={this.state.populationMin}
             populationMax={this.state.populationMax}
+            sunshineHoursMin={this.state.sunshineHoursMin}
+            sunshineHoursMax={this.state.sunshineHoursMax}
           />
         </main>
       </div>

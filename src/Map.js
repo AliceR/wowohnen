@@ -37,7 +37,9 @@ class Map extends React.Component {
       map.setFilter('cities_processed-59mru6', [
         'all',
         ['>=', 'population', this.props.populationMin],
-        ['<=', 'population', this.props.populationMax]
+        ['<=', 'population', this.props.populationMax],
+        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
+        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
       ])
     })
 
@@ -72,7 +74,8 @@ class Map extends React.Component {
         'all',
         ['>=', 'population', this.props.populationMin],
         ['<=', 'population', this.props.populationMax],
-        ['!=', 'featureCode', 'PPLX']
+        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
+        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
       ])
     }
   }
