@@ -19,22 +19,22 @@ class Map extends React.Component {
     })
 
     map.on('load', () => {
-      map.addSource('cities-aqu61x', {
+      map.addSource('cities_processed-59mru6', {
         type: 'vector',
-        url: 'mapbox://ustroetz.6bwcskwk'
+        url: 'mapbox://ustroetz.9fzl7st5'
       })
 
       map.addLayer({
-        id: 'cities-aqu61x',
+        id: 'cities_processed-59mru6',
         type: 'circle',
-        source: 'cities-aqu61x',
-        'source-layer': 'cities-aqu61x',
+        source: 'cities_processed-59mru6',
+        'source-layer': 'cities_processed-59mru6',
         paint: {
           'circle-color': 'teal'
         }
       })
 
-      map.setFilter('cities-aqu61x', [
+      map.setFilter('cities_processed-59mru6', [
         'all',
         ['>=', 'population', this.props.min],
         ['<=', 'population', this.props.max],
@@ -42,7 +42,7 @@ class Map extends React.Component {
       ])
     })
 
-    map.on('click', 'cities-aqu61x', function(e) {
+    map.on('click', 'cities_processed-59mru6', function(e) {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
@@ -58,7 +58,7 @@ class Map extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (this.props.min !== prevProps.min || this.props.max !== prevProps.max) {
-      this.state.map.setFilter('cities-aqu61x', [
+      this.state.map.setFilter('cities_processed-59mru6', [
         'all',
         ['>=', 'population', this.props.min],
         ['<=', 'population', this.props.max],
