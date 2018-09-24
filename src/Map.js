@@ -19,37 +19,46 @@ class Map extends React.Component {
     })
 
     map.on('load', () => {
-      map.addSource('cities-aqu61x', {
+      map.addSource('cities_processed-59mru6', {
         type: 'vector',
-        url: 'mapbox://ustroetz.6bwcskwk'
+        url: 'mapbox://ustroetz.9fzl7st5'
       })
 
       map.addLayer({
-        id: 'cities-aqu61x',
+        id: 'cities_processed-59mru6',
         type: 'circle',
-        source: 'cities-aqu61x',
-        'source-layer': 'cities-aqu61x',
+        source: 'cities_processed-59mru6',
+        'source-layer': 'cities_processed-59mru6',
         paint: {
           'circle-color': 'teal'
         }
       })
 
-      map.setFilter('cities-aqu61x', [
+      map.setFilter('cities_processed-59mru6', [
         'all',
-        ['>=', 'population', this.props.min],
-        ['<=', 'population', this.props.max],
-        ['!=', 'featureCode', 'PPLX']
+        ['>=', 'population', this.props.populationMin],
+        ['<=', 'population', this.props.populationMax],
+        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
+        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
       ])
     })
 
-    map.on('click', 'cities-aqu61x', function(e) {
+    map.on('click', 'cities_processed-59mru6', function(e) {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
+      var sunshine_hours = e.features[0].properties.sunshine_hours
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(name + ' (' + population.toLocaleString() + ')')
+        .setHTML(
+          name +
+            ' (' +
+            population.toLocaleString() +
+            ' ' +
+            sunshine_hours.toLocaleString() +
+            ')'
+        )
         .addTo(map)
     })
 
@@ -57,12 +66,18 @@ class Map extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.min !== prevProps.min || this.props.max !== prevProps.max) {
-      this.state.map.setFilter('cities-aqu61x', [
+    if (
+      this.props.populationMin !== prevProps.populationMin ||
+      this.props.populationMax !== prevProps.populationMax ||
+      this.props.sunshineHoursMin !== prevProps.sunshineHoursMin ||
+      this.props.sunshineHoursMax !== prevProps.sunshineHoursMax
+    ) {
+      this.state.map.setFilter('cities_processed-59mru6', [
         'all',
-        ['>=', 'population', this.props.min],
-        ['<=', 'population', this.props.max],
-        ['!=', 'featureCode', 'PPLX']
+        ['>=', 'population', this.props.populationMin],
+        ['<=', 'population', this.props.populationMax],
+        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
+        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
       ])
     }
   }

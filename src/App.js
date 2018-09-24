@@ -8,49 +8,23 @@ import 'rc-slider/assets/index.css'
 import React, { Component } from 'react'
 
 import Map from './Map'
-
-const styles = theme => ({
-  root: {
-    flexGrow: 1,
-    height: '100vh',
-    zIndex: 1,
-    overflow: 'hidden',
-    position: 'relative',
-    display: 'flex'
-  },
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    backgroundColor: 'teal'
-  },
-  drawerPaper: {
-    position: 'relative',
-    width: 320
-  },
-  content: {
-    flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
-    minWidth: 0 // So the Typography noWrap works
-  },
-  range: {
-    margin: 20,
-    top: 100,
-    position: 'relative'
-  }
-})
+import styles from './App.styles'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      min: 50000,
-      max: 250000
+      populationMin: 50000,
+      populationMax: 250000,
+      sunshineHoursMin: 1600,
+      sunshineHoursMax: 2000
     }
   }
 
-  onSliderChange = value => {
+  onSliderChange = (type, value) => {
     this.setState({
-      min: value[0],
-      max: value[1]
+      [`${type}Min`]: value[0],
+      [`${type}Max`]: value[1]
     })
   }
 
@@ -68,22 +42,48 @@ class App extends Component {
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
             <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {this.state.min.toLocaleString()} -{' '}
-              {this.state.max.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              👩‍🌾 {this.state.populationMin.toLocaleString()} -{' '}
+              {this.state.populationMax.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
             </Typography>
             <Range
-              defaultValue={[this.state.min, this.state.max]}
+              defaultValue={[
+                this.state.populationMin,
+                this.state.populationMax
+              ]}
               min={0}
               max={500000}
               step={1000}
-              onChange={this.onSliderChange}
+              onChange={value => this.onSliderChange('population', value)}
+              trackStyle={[{ backgroundColor: 'teal' }]}
+              handleStyle={[{ borderColor: 'teal' }, { borderColor: 'teal' }]}
+            />
+          </div>
+          <div className={classes.range}>
+            <Typography variant="subheading" color="inherit" align="center">
+              🌥 {this.state.sunshineHoursMin.toLocaleString()} -{' '}
+              {this.state.sunshineHoursMax.toLocaleString()} ☀️
+            </Typography>
+            <Range
+              defaultValue={[
+                this.state.sunshineHoursMin,
+                this.state.sunshineHoursMax
+              ]}
+              min={0}
+              max={2000}
+              step={100}
+              onChange={value => this.onSliderChange('sunshineHours', value)}
               trackStyle={[{ backgroundColor: 'teal' }]}
               handleStyle={[{ borderColor: 'teal' }, { borderColor: 'teal' }]}
             />
           </div>
         </Drawer>
         <main className={classes.content}>
-          <Map min={this.state.min} max={this.state.max} />
+          <Map
+            populationMin={this.state.populationMin}
+            populationMax={this.state.populationMax}
+            sunshineHoursMin={this.state.sunshineHoursMin}
+            sunshineHoursMax={this.state.sunshineHoursMax}
+          />
         </main>
       </div>
     )
