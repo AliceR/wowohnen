@@ -62,12 +62,13 @@ class Map extends React.Component {
       new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(
-          name +
-            ' (' +
+          '<h3>' +
+            name +
+            '</h3>' +
+            '🧑 ' +
             population.toLocaleString() +
-            ' ' +
-            sunshine_hours.toLocaleString() +
-            ')'
+            '<br/> ☀️ ' +
+            sunshine_hours.toLocaleString()
         )
         .addTo(map)
     })
