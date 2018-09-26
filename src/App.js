@@ -30,6 +30,14 @@ class App extends Component {
 
   render() {
     const { classes } = this.props
+
+    const populationMinLabel = this.state.populationMin.toLocaleString()
+    const maxThreshold = 500000
+    const populationMaxLabel =
+      this.state.populationMax > 500000
+        ? maxThreshold.toLocaleString() + ' +'
+        : this.state.populationMax.toLocaleString()
+
     return (
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
@@ -42,8 +50,7 @@ class App extends Component {
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
             <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {this.state.populationMin.toLocaleString()} -{' '}
-              {this.state.populationMax.toLocaleString()} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              👩‍🌾 {populationMinLabel} - {populationMaxLabel} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
             </Typography>
             <Range
               defaultValue={[
@@ -51,7 +58,7 @@ class App extends Component {
                 this.state.populationMax
               ]}
               min={0}
-              max={500000}
+              max={501000}
               step={1000}
               onChange={value => this.onSliderChange('population', value)}
               trackStyle={[{ backgroundColor: 'teal' }]}
