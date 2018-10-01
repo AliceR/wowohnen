@@ -10,6 +10,22 @@ class Map extends React.Component {
     this.state = { map: null }
   }
 
+  getFilter() {
+    const maxThreshold = 500000
+    const populationMaxFilter =
+      this.props.populationMax > maxThreshold
+        ? ['in']
+        : ['<=', 'population', this.props.populationMax]
+
+    return [
+      'all',
+      ['>=', 'population', this.props.populationMin],
+      populationMaxFilter,
+      ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
+      ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
+    ]
+  }
+
   componentDidMount() {
     const map = new mapboxgl.Map({
       container: this.mapContainer,
@@ -34,13 +50,7 @@ class Map extends React.Component {
         }
       })
 
-      map.setFilter('cities_processed-59mru6', [
-        'all',
-        ['>=', 'population', this.props.populationMin],
-        ['<=', 'population', this.props.populationMax],
-        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
-        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
-      ])
+      map.setFilter('cities_processed-59mru6', this.getFilter())
     })
 
     map.on('click', 'cities_processed-59mru6', function(e) {
@@ -52,12 +62,13 @@ class Map extends React.Component {
       new mapboxgl.Popup()
         .setLngLat(coordinates)
         .setHTML(
-          name +
-            ' (' +
+          '<h3>' +
+            name +
+            '</h3>' +
+            '🧑 ' +
             population.toLocaleString() +
-            ' ' +
-            sunshine_hours.toLocaleString() +
-            ')'
+            '<br/> ☀️ ' +
+            sunshine_hours.toLocaleString()
         )
         .addTo(map)
     })
@@ -72,13 +83,7 @@ class Map extends React.Component {
       this.props.sunshineHoursMin !== prevProps.sunshineHoursMin ||
       this.props.sunshineHoursMax !== prevProps.sunshineHoursMax
     ) {
-      this.state.map.setFilter('cities_processed-59mru6', [
-        'all',
-        ['>=', 'population', this.props.populationMin],
-        ['<=', 'population', this.props.populationMax],
-        ['>=', 'sunshine_hours', this.props.sunshineHoursMin],
-        ['<=', 'sunshine_hours', this.props.sunshineHoursMax]
-      ])
+      this.state.map.setFilter('cities_processed-59mru6', this.getFilter())
     }
   }
 
