@@ -7,7 +7,7 @@ from geojson import Feature, FeatureCollection, Point
 def download_cities():
     return pd.read_csv(
         'http://download.geonames.org/export/dump/cities1000.zip',
-        sep="\t",
+        sep='\t',
         header=None,
         names=['id',
                'name',
