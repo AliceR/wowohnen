@@ -23,3 +23,7 @@ pip install -r requirements.txt
 ```
 python get_cities.py
 ```
+
+```
+python add_population.py
+```
