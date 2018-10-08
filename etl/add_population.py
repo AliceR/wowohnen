@@ -57,9 +57,6 @@ def save_as_geojson(cities_df):
             }),
         axis=1).tolist()
 
-    import pdb
-    pdb.set_trace()
-
     feature_collection = FeatureCollection(features)
 
     with open('cities.geojson', 'w') as f:
