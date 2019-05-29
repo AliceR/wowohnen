@@ -46,7 +46,9 @@ class Map extends React.Component {
         source: 'cities_processed-59mru6',
         'source-layer': 'cities_processed-59mru6',
         paint: {
-          'circle-color': 'teal'
+          'circle-opacity': 0,
+          'circle-stroke-width': 3,
+          'circle-stroke-color': 'teal'
         }
       })
 
