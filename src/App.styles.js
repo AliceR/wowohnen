@@ -24,6 +24,10 @@ const styles = theme => ({
     margin: 20,
     top: 100,
     position: 'relative'
+  },
+  label: {
+    display: 'flex',
+    justifyContent: 'space-between'
   }
 })
 

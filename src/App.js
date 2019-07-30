@@ -42,15 +42,25 @@ class App extends Component {
       <div className={classes.root}>
         <AppBar position="absolute" className={classes.appBar}>
           <Toolbar>
-            <Typography variant="title" color="inherit" noWrap>
+            <Typography variant="h6" color="inherit" noWrap>
               WoWohnen
             </Typography>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" classes={{ paper: classes.drawerPaper }}>
           <div className={classes.range}>
-            <Typography variant="subheading" color="inherit" align="center">
-              👩‍🌾 {populationMinLabel} - {populationMaxLabel} 👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+            <Typography
+              variant="body1"
+              color="inherit"
+              className={classes.label}
+            >
+              <span role="img" aria-label="rural">
+                👩‍🌾
+              </span>{' '}
+              {populationMinLabel} - {populationMaxLabel}{' '}
+              <span role="img" aria-label="urban">
+                👩‍⚕️👩‍💻👨‍🎨🤵👩‍🚀
+              </span>
             </Typography>
             <Range
               defaultValue={[
@@ -66,9 +76,19 @@ class App extends Component {
             />
           </div>
           <div className={classes.range}>
-            <Typography variant="subheading" color="inherit" align="center">
-              🌥 {this.state.sunshineHoursMin.toLocaleString()} -{' '}
-              {this.state.sunshineHoursMax.toLocaleString()} ☀️
+            <Typography
+              variant="body1"
+              color="inherit"
+              className={classes.label}
+            >
+              <span role="img" aria-label="cloudy">
+                🌥
+              </span>{' '}
+              {this.state.sunshineHoursMin.toLocaleString()} -{' '}
+              {this.state.sunshineHoursMax.toLocaleString()}{' '}
+              <span role="img" aria-label="sunny">
+                ☀️
+              </span>
             </Typography>
             <Range
               defaultValue={[
