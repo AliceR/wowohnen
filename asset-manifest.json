@@ -1,6 +1,17 @@
 {
-  "main.css": "static/css/main.d968ba43.css",
-  "main.css.map": "static/css/main.d968ba43.css.map",
-  "main.js": "static/js/main.5ca91712.js",
-  "main.js.map": "static/js/main.5ca91712.js.map"
+  "files": {
+    "main.css": "/wowohnen/static/css/main.a2b7b0b6.chunk.css",
+    "main.js": "/wowohnen/static/js/main.8d03ddc1.chunk.js",
+    "main.js.map": "/wowohnen/static/js/main.8d03ddc1.chunk.js.map",
+    "runtime~main.js": "/wowohnen/static/js/runtime~main.179ba4a7.js",
+    "runtime~main.js.map": "/wowohnen/static/js/runtime~main.179ba4a7.js.map",
+    "static/css/2.509658c0.chunk.css": "/wowohnen/static/css/2.509658c0.chunk.css",
+    "static/js/2.3696953f.chunk.js": "/wowohnen/static/js/2.3696953f.chunk.js",
+    "static/js/2.3696953f.chunk.js.map": "/wowohnen/static/js/2.3696953f.chunk.js.map",
+    "index.html": "/wowohnen/index.html",
+    "precache-manifest.b143a3e54c410f9647f704d04125de85.js": "/wowohnen/precache-manifest.b143a3e54c410f9647f704d04125de85.js",
+    "service-worker.js": "/wowohnen/service-worker.js",
+    "static/css/2.509658c0.chunk.css.map": "/wowohnen/static/css/2.509658c0.chunk.css.map",
+    "static/css/main.a2b7b0b6.chunk.css.map": "/wowohnen/static/css/main.a2b7b0b6.chunk.css.map"
+  }
 }
