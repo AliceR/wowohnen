@@ -40,22 +40,43 @@ class Map extends React.Component {
         url: 'mapbox://ustroetz.9fzl7st5'
       })
 
+      const radius = [
+        "interpolate",
+        ["cubic-bezier", 0, 0.2,0.4,0.9],
+        ["get", "population"],
+        0, 0,
+        5000000, 50
+      ]
+
       map.addLayer({
-        id: 'cities_processed-59mru6',
+        id: 'cities_base',
         type: 'circle',
         source: 'cities_processed-59mru6',
         'source-layer': 'cities_processed-59mru6',
         paint: {
+          'circle-radius': radius,
+          'circle-opacity': 0.2,
+          'circle-color': 'grey'
+        }
+      })
+
+      map.addLayer({
+        id: 'cities_highlighted',
+        type: 'circle',
+        source: 'cities_processed-59mru6',
+        'source-layer': 'cities_processed-59mru6',
+        paint: {
+          'circle-radius': radius,
           'circle-opacity': 0,
           'circle-stroke-width': 3,
           'circle-stroke-color': 'teal'
         }
       })
 
-      map.setFilter('cities_processed-59mru6', this.getFilter())
+      map.setFilter('cities_highlighted', this.getFilter())
     })
 
-    map.on('click', 'cities_processed-59mru6', function(e) {
+    map.on('click', 'cities_highlighted', function(e) {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
@@ -85,7 +106,7 @@ class Map extends React.Component {
       this.props.sunshineHoursMin !== prevProps.sunshineHoursMin ||
       this.props.sunshineHoursMax !== prevProps.sunshineHoursMax
     ) {
-      this.state.map.setFilter('cities_processed-59mru6', this.getFilter())
+      this.state.map.setFilter('cities_highlighted', this.getFilter())
     }
   }
 
