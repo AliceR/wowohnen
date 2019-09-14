@@ -8,7 +8,7 @@ from pyproj import Proj, transform
 
 
 def download_sunshine():
-    url = "ftp://ftp-cdc.dwd.de/pub/CDC/grids_germany/multi_annual/sunshine_duration/8110/grids_germany_multi_annual_sunshine_duration_1981-2010_17.asc.gz"
+    url = "https://opendata.dwd.de/climate_environment/CDC/grids_germany/annual/sunshine_duration/grids_germany_annual_sunshine_duration_201817.asc.gz"
     response = urlopen(url)
     compressed_file = io.BytesIO(response.read())
     decompressed_file = gzip.GzipFile(fileobj=compressed_file)
