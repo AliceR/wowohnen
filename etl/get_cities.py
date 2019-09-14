@@ -38,7 +38,7 @@ def save_as_geojson(cities_df):
         lambda row: Feature(
             geometry=Point(
                 (float(row['lon']), float(row['lat']))),
-            properties={'id': row['id'], 'name': row['name']}),
+            properties={'id': row['id'], 'name': row['name'], 'population': None, 'sunshine': None}),
         axis=1).tolist()
 
     feature_collection = FeatureCollection(features)
@@ -56,8 +56,9 @@ def read_cities_geojson():
         feature_collection = pd.read_json(f)
         cities_df = json_normalize(feature_collection['features'])
         cities_df = cities_df[['geometry.coordinates',
-                               'properties.id', 'properties.name']]
-        cities_df.columns = ['coordinates', 'id', 'name']
+                               'properties.id', 'properties.name', 'properties.population', 'properties.sunshine']]
+        cities_df.columns = ['coordinates', 'id',
+                             'name', 'population', 'sunshine']
 
         return cities_df
 
