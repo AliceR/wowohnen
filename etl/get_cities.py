@@ -29,7 +29,7 @@ def download_cities():
                'dem',
                'tz',
                'lastModified'],
-        usecols=['id', 'name', 'lat', 'lon']
+        usecols=['id', 'name', 'lat', 'lon', 'country']
     )
 
 
@@ -47,6 +47,10 @@ def save_as_geojson(cities_df):
         json.dump(feature_collection, f)
 
 
+def filter_cities_by_country(cities_df, country):
+    return cities_df[cities_df['country'] == country]
+
+
 def read_cities_geojson():
     with open('cities.geojson', 'r') as f:
         feature_collection = pd.read_json(f)
@@ -60,4 +64,5 @@ def read_cities_geojson():
 
 if __name__ == '__main__':
     cities_df = download_cities()
-    save_as_geojson(cities_df)
+    german_cities_df = filter_cities_by_country(cities_df, 'DE')
+    save_as_geojson(german_cities_df)
