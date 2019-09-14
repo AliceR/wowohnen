@@ -3,11 +3,11 @@
 ## Setup
 
 ```
-pip install virtualenv
+brew install python
 ```
 
 ```
-virtualenv -p python3 venv
+python3 -m venv venv
 ```
 
 ```
@@ -26,4 +26,8 @@ python get_cities.py
 
 ```
 python add_population.py
+```
+
+```
+python add_sunshine.py
 ```

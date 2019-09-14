@@ -1,6 +1,7 @@
 import json
 
 import pandas as pd
+from pandas.io.json import json_normalize
 from geojson import Feature, FeatureCollection, Point
 
 
@@ -28,7 +29,7 @@ def download_cities():
                'dem',
                'tz',
                'lastModified'],
-        usecols=['id', 'name', 'lat', 'lon']
+        usecols=['id', 'name', 'lat', 'lon', 'country']
     )
 
 
@@ -37,7 +38,7 @@ def save_as_geojson(cities_df):
         lambda row: Feature(
             geometry=Point(
                 (float(row['lon']), float(row['lat']))),
-            properties={'id': row['id'], 'name': row['name']}),
+            properties={'id': row['id'], 'name': row['name'], 'population': None, 'sunshine': None}),
         axis=1).tolist()
 
     feature_collection = FeatureCollection(features)
@@ -46,6 +47,23 @@ def save_as_geojson(cities_df):
         json.dump(feature_collection, f)
 
 
+def filter_cities_by_country(cities_df, country):
+    return cities_df[cities_df['country'] == country]
+
+
+def read_cities_geojson():
+    with open('cities.geojson', 'r') as f:
+        feature_collection = pd.read_json(f)
+        cities_df = json_normalize(feature_collection['features'])
+        cities_df = cities_df[['geometry.coordinates',
+                               'properties.id', 'properties.name', 'properties.population', 'properties.sunshine']]
+        cities_df.columns = ['coordinates', 'id',
+                             'name', 'population', 'sunshine']
+
+        return cities_df
+
+
 if __name__ == '__main__':
     cities_df = download_cities()
-    save_as_geojson(cities_df)
+    german_cities_df = filter_cities_by_country(cities_df, 'DE')
+    save_as_geojson(german_cities_df)
