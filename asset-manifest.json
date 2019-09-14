@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/wowohnen/static/css/main.a2b7b0b6.chunk.css",
-    "main.js": "/wowohnen/static/js/main.8d03ddc1.chunk.js",
-    "main.js.map": "/wowohnen/static/js/main.8d03ddc1.chunk.js.map",
-    "runtime~main.js": "/wowohnen/static/js/runtime~main.179ba4a7.js",
-    "runtime~main.js.map": "/wowohnen/static/js/runtime~main.179ba4a7.js.map",
-    "static/css/2.509658c0.chunk.css": "/wowohnen/static/css/2.509658c0.chunk.css",
-    "static/js/2.3696953f.chunk.js": "/wowohnen/static/js/2.3696953f.chunk.js",
-    "static/js/2.3696953f.chunk.js.map": "/wowohnen/static/js/2.3696953f.chunk.js.map",
+    "main.js": "/wowohnen/static/js/main.3b373c83.chunk.js",
+    "main.js.map": "/wowohnen/static/js/main.3b373c83.chunk.js.map",
+    "runtime~main.js": "/wowohnen/static/js/runtime~main.26ce8a8e.js",
+    "runtime~main.js.map": "/wowohnen/static/js/runtime~main.26ce8a8e.js.map",
+    "static/css/2.96479aa2.chunk.css": "/wowohnen/static/css/2.96479aa2.chunk.css",
+    "static/js/2.662ae042.chunk.js": "/wowohnen/static/js/2.662ae042.chunk.js",
+    "static/js/2.662ae042.chunk.js.map": "/wowohnen/static/js/2.662ae042.chunk.js.map",
     "index.html": "/wowohnen/index.html",
-    "precache-manifest.b143a3e54c410f9647f704d04125de85.js": "/wowohnen/precache-manifest.b143a3e54c410f9647f704d04125de85.js",
+    "precache-manifest.002c7f32583bc6b5f5ab5f4b838f7161.js": "/wowohnen/precache-manifest.002c7f32583bc6b5f5ab5f4b838f7161.js",
     "service-worker.js": "/wowohnen/service-worker.js",
-    "static/css/2.509658c0.chunk.css.map": "/wowohnen/static/css/2.509658c0.chunk.css.map",
+    "static/css/2.96479aa2.chunk.css.map": "/wowohnen/static/css/2.96479aa2.chunk.css.map",
     "static/css/main.a2b7b0b6.chunk.css.map": "/wowohnen/static/css/main.a2b7b0b6.chunk.css.map"
   }
 }
