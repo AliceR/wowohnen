@@ -1,13 +1,20 @@
 import json
 
 import pandas as pd
+from pathlib import Path
 from pandas.io.json import json_normalize
 from geojson import Feature, FeatureCollection, Point
 
 
-def download_cities():
+def get_cities_data():
+    existing_cities_data = Path('../data/cities1000.zip')
+    if existing_cities_data.is_file():
+        data_source = existing_cities_data
+    else:
+        data_source = 'http://download.geonames.org/export/dump/cities1000.zip'
+
     return pd.read_csv(
-        'http://download.geonames.org/export/dump/cities1000.zip',
+        data_source,
         sep='\t',
         header=None,
         names=['id',
@@ -64,6 +71,6 @@ def read_cities_geojson():
 
 
 if __name__ == '__main__':
-    cities_df = download_cities()
+    cities_df = get_cities_data()
     german_cities_df = filter_cities_by_country(cities_df, 'DE')
     save_as_geojson(german_cities_df)

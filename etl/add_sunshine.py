@@ -4,19 +4,25 @@ from urllib.request import urlopen
 import rasterio
 import gzip
 import io
+from pathlib import Path
 from pyproj import Proj, transform
 
 from get_cities import read_cities_geojson
 from utils import save_as_geojson
 
 
-def download_sunshine():
-    url = "https://opendata.dwd.de/climate_environment/CDC/grids_germany/annual/sunshine_duration/grids_germany_annual_sunshine_duration_201817.asc.gz"
-    response = urlopen(url)
-    compressed_file = io.BytesIO(response.read())
-    decompressed_file = gzip.GzipFile(fileobj=compressed_file)
+def get_sunshine_data():
+    existing_sunshine_data = Path(
+        '../data/grids_germany_annual_sunshine_duration_201817.asc.gz')
+    if existing_sunshine_data.is_file():
+        sunshine_data = gzip.GzipFile(existing_sunshine_data)
+    else:
+        url = 'https://opendata.dwd.de/climate_environment/CDC/grids_germany/annual/sunshine_duration/grids_germany_annual_sunshine_duration_201817.asc.gz'
+        response = urlopen(url)
+        compressed_file = io.BytesIO(response.read())
+        sunshine_data = gzip.GzipFile(fileobj=compressed_file)
 
-    return decompressed_file
+    return sunshine_data
 
 
 def merge_sunshine_to_cities(sunshine_raster, cities_df):
@@ -35,7 +41,7 @@ def merge_sunshine_to_cities(sunshine_raster, cities_df):
 
 
 if __name__ == '__main__':
-    sunshine_raster = download_sunshine()
+    sunshine_raster = get_sunshine_data()
 
     cities_df = read_cities_geojson()
     cities_with_sunshine_df = merge_sunshine_to_cities(
