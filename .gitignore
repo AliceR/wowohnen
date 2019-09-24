@@ -24,4 +24,5 @@ yarn-error.log*
 venv/
 
 # data
+/data
 *.geojson
