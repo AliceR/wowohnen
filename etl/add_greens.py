@@ -31,5 +31,5 @@ def get_2019_european_election_results():
 
 
 if __name__ == '__main__':
-    results_df = get_2019_european_election_results(url)
+    results_df = get_2019_european_election_results()
     print(results_df)
