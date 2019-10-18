@@ -25,7 +25,7 @@ def get_2019_european_election_results():
     return pd.read_csv(
         url,
         sep=';',
-        header=3,
+        header=2,
         usecols=['Nr', 'Wahlberechtigte', 'BÜNDNIS 90/DIE GRÜNEN']
     )
 
