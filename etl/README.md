@@ -35,3 +35,8 @@ python add_sunshine.py
 ```
 python add_greens.py
 ```
+
+## Run tests
+````
+py.test tests
+```
