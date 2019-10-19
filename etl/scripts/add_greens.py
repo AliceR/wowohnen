@@ -29,6 +29,8 @@ def get_2019_european_election_results():
         usecols=['Nr', 'Wahlberechtigte', 'BÜNDNIS 90/DIE GRÜNEN']
     )
 
+def calculate_green_part_percentage():
+    return None
 
 if __name__ == '__main__':
     results_df = get_2019_european_election_results()
