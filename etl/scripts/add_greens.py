@@ -14,16 +14,20 @@ import json
 
 import pandas as pd
 from pathlib import Path
+import requests
 
 
 def get_2019_european_election_results():
-    raw_election_data = Path('data/ew19_kerg.csv')
-    if raw_election_data.is_file():
-        url = 'data/ew19_kerg.csv'
-    else:
+    raw_election_data_path = Path('data/ew19_kerg.csv')
+    
+    if not raw_election_data_path.is_file():
         url = 'https://bundeswahlleiter.de/dam/jcr/095b092a-780e-45e1-aca9-caafe903b126/ew19_kerg.csv'
+        response = requests.get(url)
+        with open(raw_election_data_path, 'wb') as f:
+            f.write(response.content)
+    
     return pd.read_csv(
-        url,
+        raw_election_data_path,
         sep=';',
         header=2,
         usecols=['Nr', 'Wahlberechtigte', 'BÜNDNIS 90/DIE GRÜNEN']
