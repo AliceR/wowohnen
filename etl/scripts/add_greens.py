@@ -35,6 +35,7 @@ def get_2019_european_election_results():
         raw_election_data_path,
         sep=';',
         header=2,
+        skiprows=[3,4],
         usecols=['Nr', 'Wahlberechtigte', 'BÜNDNIS 90/DIE GRÜNEN']
     )
 
@@ -47,15 +48,21 @@ def get_election_geometries():
         response = requests.get(url)
         f = ZipFile(BytesIO(response.content))
         f.extractall('data')
-    
-    return gpd.read_file(election_geometries_path)
+
+    geometries_gdf = gpd.read_file(election_geometries_path)[['RS', 'geometry']]
+    geometries_gdf['RS'] = geometries_gdf['RS'].astype(float)
+    return geometries_gdf
 
 def calculate_green_percentage(election_results_df):
     election_results_df['green_percentage'] = 100 / election_results_df['Wahlberechtigte'] * election_results_df['BÜNDNIS 90/DIE GRÜNEN']
     return election_results_df
 
+def join_geometrie_with_results(geometries_gdf, results_df):
+    return pd.merge(left=geometries_gdf,right=results_df, left_on='RS', right_on='Nr')[['geometry', 'Nr', 'green_percentage']]
+
 if __name__ == '__main__':
     results_df = get_2019_european_election_results()
+    results_with_percentage = calculate_green_percentage(results_df)
     geometries_gdf = get_election_geometries()
-    print(geometries_gdf)
-    print(results_df)
+    results_gdf = join_geometrie_with_results(geometries_gdf, results_with_percentage)
+    print(results_gdf)
