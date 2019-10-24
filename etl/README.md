@@ -4,6 +4,7 @@
 
 ```
 brew install python
+brew install spatialindex
 ```
 
 ```
