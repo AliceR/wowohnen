@@ -39,5 +39,5 @@ python add_greens.py
 
 ## Run tests
 ````
-py.test tests
+py.test
 ```
