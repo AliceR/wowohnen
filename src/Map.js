@@ -41,11 +41,13 @@ class Map extends React.Component {
       })
 
       const radius = [
-        "interpolate",
-        ["cubic-bezier", 0, 0.2,0.4,0.9],
-        ["get", "population"],
-        0, 0,
-        5000000, 50
+        'interpolate',
+        ['cubic-bezier', 0, 0.2, 0.4, 0.9],
+        ['get', 'population'],
+        0,
+        0,
+        5000000,
+        50
       ]
 
       map.addLayer({
@@ -76,7 +78,7 @@ class Map extends React.Component {
       map.setFilter('cities_highlighted', this.getFilter())
     })
 
-    map.on('click', 'cities_highlighted', function(e) {
+    map.on('click', 'cities_highlighted', function (e) {
       var coordinates = e.features[0].geometry.coordinates.slice()
       var name = e.features[0].properties.name
       var population = e.features[0].properties.population
