@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "21a654aed3bd39e112c3562eea16a013",
+    "revision": "48209a7316a01e1cd6caaa779941f39b",
     "url": "/wowohnen/index.html"
   },
   {
-    "revision": "788e6c2d1ce2966822ec",
+    "revision": "49ea785a0bb07af5e590",
     "url": "/wowohnen/static/css/2.ed590494.chunk.css"
   },
   {
-    "revision": "823cabcf779ddf8315cb",
+    "revision": "ec8133f69f6aeee9b6c1",
     "url": "/wowohnen/static/css/main.a2b7b0b6.chunk.css"
   },
   {
-    "revision": "788e6c2d1ce2966822ec",
-    "url": "/wowohnen/static/js/2.4f115aad.chunk.js"
+    "revision": "49ea785a0bb07af5e590",
+    "url": "/wowohnen/static/js/2.608b7a34.chunk.js"
   },
   {
     "revision": "5e9b6f5c16b720e8a86875f97734673e",
-    "url": "/wowohnen/static/js/2.4f115aad.chunk.js.LICENSE.txt"
+    "url": "/wowohnen/static/js/2.608b7a34.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "823cabcf779ddf8315cb",
-    "url": "/wowohnen/static/js/main.15bfdef1.chunk.js"
+    "revision": "ec8133f69f6aeee9b6c1",
+    "url": "/wowohnen/static/js/main.7599780b.chunk.js"
   },
   {
     "revision": "6e61e1bf0d68fa56714d",
