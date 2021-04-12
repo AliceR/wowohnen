@@ -4,9 +4,9 @@ import App from './App'
 
 jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
   Map: jest.fn(() => ({
-    on: jest.fn(),
-  })),
-}));
+    on: jest.fn()
+  }))
+}))
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
